@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/bed_shop/static/css/main.e6c13ad2.css",
+    "main.js": "/bed_shop/static/js/main.31710626.js",
+    "static/js/787.1661c9e0.chunk.js": "/bed_shop/static/js/787.1661c9e0.chunk.js",
+    "index.html": "/bed_shop/index.html",
+    "main.e6c13ad2.css.map": "/bed_shop/static/css/main.e6c13ad2.css.map",
+    "main.31710626.js.map": "/bed_shop/static/js/main.31710626.js.map",
+    "787.1661c9e0.chunk.js.map": "/bed_shop/static/js/787.1661c9e0.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e6c13ad2.css",
+    "static/js/main.31710626.js"
+  ]
+}
