@@ -18,14 +18,17 @@ const useStyles = makeStyles((theme) => ({
   },
   avatar: {
     margin: theme.spacing(1),
-    backgroundColor: theme.palette.primary.main,
+    backgroundColor: '#1D9EDC',
   },
   form: {
     width: '100%',
     marginTop: theme.spacing(1),
+    color: '#1D9EDC',
+
   },
   submit: {
     margin: theme.spacing(3, 0, 2),
+    backgroundColor: '#1D9EDC'
   },
 }));
 
