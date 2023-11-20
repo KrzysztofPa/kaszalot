@@ -43,9 +43,9 @@ const TopMenu = () => {
           <div className={classes.tabs}>
             <Hidden xsDown>
               <Tabs value={false}>
-                <Tab label="Zakładka 1" className={classes.tab} />
-                <Tab label="Zakładka 2" className={classes.tab} />
-                <Tab label="Zakładka 3" className={classes.tab} />
+                <Button color="inherit" className={classes.tab}>Zakładka 1</Button>
+                <Button color="inherit" className={classes.tab}>Zakładka 1</Button>
+                <Button color="inherit" className={classes.tab}>Zakładka 1</Button>
               </Tabs>
             </Hidden>
           </div>
@@ -86,12 +86,11 @@ const TopMenu = () => {
         classes={{ paper: classes.drawerPaper }}
       >
         <Tabs value={false} orientation="vertical">
-          <Tab label="Zakładka 1" className={classes.tab} onClick={handleDrawerClose} />
-          <Tab label="Zakładka 2" className={classes.tab} onClick={handleDrawerClose} />
-          <Tab label="Zakładka 3" className={classes.tab} onClick={handleDrawerClose} />
-          <Tab label="Logowanie" className={classes.tab} onClick={handleDrawerClose} />
-          <Tab label="Koszyk" className={classes.tab} onClick={handleDrawerClose} />
-
+        <Button color="inherit" className={classes.tabDrawer} onClick={handleDrawerClose}>Zakładka 1</Button>
+        <Button color="inherit" className={classes.tabDrawer} onClick={handleDrawerClose}>Zakładka 2</Button>
+        <Button color="inherit" className={classes.tabDrawer} onClick={handleDrawerClose}>Zakładka 3</Button>
+        <Button color="inherit" className={classes.tabDrawer} onClick={handleDrawerClose}>Koszyk</Button>
+        <Button color="inherit" className={classes.tabDrawer} onClick={handleDrawerClose}>Logowanie</Button>
         </Tabs>
       </Drawer>
     </div>

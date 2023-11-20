@@ -1,4 +1,5 @@
-import AppBar from "../TopMenu/TopMenu";
+import Header from "../TopMenu/TopMenu";
+import Footer from "../Footer/Footer";
 
 interface OwnProps {
     Element: JSX.Element
@@ -7,7 +8,8 @@ interface OwnProps {
 export const PageTemplate = ({Element}: OwnProps): JSX.Element => {
 
     return <>
-        <AppBar/>
+        <Header/>
         {Element}
+        <Footer/>
     </>
 }
