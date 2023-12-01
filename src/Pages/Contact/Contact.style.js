@@ -20,24 +20,23 @@ export const ContactInput = styled.input`
 
 export const ContactTextArea = styled.textarea`
   min-width: 14rem;
+  min-height: 15rem;
+  margin-bottom: 2rem;
 `
 
 export const ContactContent = styled(Content)`
-  background: url("/contact_background.jpg") bottom;
   background-size: cover;
   margin: 0;
   min-height: 100vh;
 `
 
-export const FBLogo = styled.a`
+export const SMLogo = styled.a`
 width: 2rem;
 height:2rem;
-margin:auto;
-
+margin:1rem;
 `
 
-export const FBIMG = styled.img`
-    width: 2rem;
+export const SMImg = styled.img`
+width: 2rem;
 height:2rem;
-    
-    `
+`

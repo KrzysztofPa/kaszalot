@@ -1,6 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import kaszalot from '../../img/image 1.png'
+import { DefaultButton } from "../Global.style";
 
 interface Product {
   id: number;
@@ -129,7 +130,7 @@ export const Main = (): JSX.Element => {
               <div style={styles.articleInfo}>
                 <h3>{article.title}</h3>
                 <p>{article.description}</p>
-                <button>Przejdź do artykułu</button>
+                <DefaultButton>Przejdź do artykułu</DefaultButton>
               </div>
             </div>
           ))}
