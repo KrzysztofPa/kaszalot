@@ -5,5 +5,6 @@ export const Routing = {
     contact: '/contact',
     shop: '/shop',
     product: '/product/:product',
-    add: '/add'
+    add: '/add',
+    artciles: '/articles',
 }

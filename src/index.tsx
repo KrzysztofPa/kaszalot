@@ -11,6 +11,7 @@ import {Shop} from "./Pages/Shop/Shop";
 import {PageTemplate} from "./Components/PageTemplate/PageTemplate";
 import {Product} from './Pages/Product/Product';
 import {Add} from "./Pages/Add/Add";
+import {Articles} from "./Pages/Articles/articles";
 
 ReactDOM.render(
     <BrowserRouter>
@@ -21,6 +22,8 @@ ReactDOM.render(
             <Route path={Routing.shop} element={<PageTemplate Element={<Shop/>}/>}/>
             <Route path={Routing.product} element={<PageTemplate Element={<Product/>}/>}/>
             <Route path={Routing.add} element={<PageTemplate Element={<Add/>}/>}/>
+            <Route path={Routing.artciles} element={<PageTemplate Element={<Articles/>}/>}/>
+
         </Routes>
     </BrowserRouter>,
     document.getElementById('root')
