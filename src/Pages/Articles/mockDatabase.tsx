@@ -73,7 +73,6 @@ interface Article {
       date: '2023-06-28',
       image: 'https://picsum.photos/200',
     },
-    // Dodaj więcej postów według potrzeb
   ];
   
   export default mockDatabase;
