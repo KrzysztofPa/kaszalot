@@ -16,7 +16,10 @@ import {
   CardContent,
   CardMedia,
   TextField,
+  IconButton,
 } from '@material-ui/core';
+import AddPhotoAlternateIcon from '@material-ui/icons/AddPhotoAlternate';
+import DeleteIcon from '@material-ui/icons/Delete';
 
 // Style
 import useStyles from './articles.style';
@@ -40,18 +43,21 @@ export const Articles = (): JSX.Element => {
   const [selectedPost, setSelectedPost] = useState<Article | null>(null);
   const [editorContent, setEditorContent] = useState<string>('');
   const [isEditing, setIsEditing] = useState<boolean>(false);
+  const [selectedImage, setSelectedImage] = useState<string>('');
 
-  const currentUser: User = { isAdmin: false };
+  const currentUser: User = { isAdmin: true };
 
   const handlePostClick = (post: Article): void => {
     setSelectedPost(post);
     setEditorContent(post.fullContent);
+    setSelectedImage(post.image);
     setIsEditing(currentUser.isAdmin);
   };
 
   const handleClose = (): void => {
     setSelectedPost(null);
     setEditorContent('');
+    setSelectedImage('');
     setIsEditing(false);
   };
 
@@ -62,11 +68,13 @@ export const Articles = (): JSX.Element => {
   const handleSave = (): void => {
     if (selectedPost) {
       const updatedDatabase = mockDatabase.map((post) =>
-        post.id === selectedPost.id ? { ...post, fullContent: editorContent } : post
+        post.id === selectedPost.id
+          ? { ...post, fullContent: editorContent, image: selectedImage }
+          : post
       );
       mockDatabase.length = 0;
       mockDatabase.push(...updatedDatabase);
-      setSelectedPost({ ...selectedPost, fullContent: editorContent });
+      setSelectedPost({ ...selectedPost, fullContent: editorContent, image: selectedImage });
       setIsEditing(false);
     }
   };
@@ -80,6 +88,22 @@ export const Articles = (): JSX.Element => {
       mockDatabase.push(...updatedDatabase);
       setSelectedPost({ ...selectedPost, title: newTitle });
     }
+  };
+
+  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
+    if (e.target.files && e.target.files.length > 0) {
+      const reader = new FileReader();
+      reader.onload = (event) => {
+        if (event.target) {
+          setSelectedImage(event.target.result as string);
+        }
+      };
+      reader.readAsDataURL(e.target.files[0]);
+    }
+  };
+
+  const handleRemoveImage = (): void => {
+    setSelectedImage('');
   };
 
   return (
@@ -120,24 +144,55 @@ export const Articles = (): JSX.Element => {
           )}
         </DialogTitle>
         <DialogContent>
-          {isEditing ? (
-            <ReactQuill value={editorContent} onChange={handleEditorChange} />
-          ) : (
-            <div dangerouslySetInnerHTML={{ __html: editorContent }} />
+  {isEditing && (
+    <div className={classes.editingContent}>
+      <div className={classes.imageContainer}>
+        <img src={selectedImage} alt="Selected" className={classes.selectedImage} />
+        <div>
+          <input
+            accept="image/*"
+            style={{ display: 'none' }}
+            id="image-upload"
+            type="file"
+            onChange={handleImageChange}
+          />
+          <label htmlFor="image-upload">
+            <IconButton color="primary" component="span">
+              <AddPhotoAlternateIcon />
+            </IconButton>
+          </label>
+          {selectedImage && (
+            <IconButton
+              color="secondary"
+              onClick={handleRemoveImage}
+              className={classes.deleteButton}
+            >
+              <DeleteIcon />
+            </IconButton>
           )}
-        </DialogContent>
-        {isEditing && (
-          <DialogActions className={classes.dialogActions}>
-            <Button onClick={handleSave} style={{ backgroundColor: '#1D9EDC', color: 'white' }}>
-              Zapisz
-            </Button>
-          </DialogActions>
-        )}
-        <DialogActions>
-          <Button onClick={handleClose} style={{ backgroundColor: '#1D9EDC', color: 'white' }}>
-            Zamknij
-          </Button>
-        </DialogActions>
+        </div>
+      </div>
+    </div>
+  )}
+  {isEditing ? (
+    <ReactQuill value={editorContent} onChange={handleEditorChange} />
+  ) : (
+    <div dangerouslySetInnerHTML={{ __html: editorContent }} />
+  )}
+</DialogContent>
+
+{isEditing && (
+  <DialogActions className={classes.dialogActions}>
+    <div className={classes.buttonsContainer}>
+      <Button onClick={handleSave} className={classes.saveButton}>
+        Zapisz
+      </Button>
+      <Button onClick={handleClose} className={classes.closeButton}>
+        Zamknij
+      </Button>
+    </div>
+  </DialogActions>
+)}
       </Dialog>
     </div>
   );
