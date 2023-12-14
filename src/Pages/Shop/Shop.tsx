@@ -11,7 +11,7 @@ import {generatePath, useNavigate} from "react-router-dom";
 import {Routing} from "../../services/Routing";
 import {useEffect, useState} from "react";
 import axios, {AxiosResponse} from "axios";
-import {baseUrl} from "../../index";
+import {baseUrl} from "../../index";  
 import { DefaultButton } from "../Global.style";
 
 const shopFixtures:categoryItem[] = 
@@ -61,7 +61,7 @@ export const Shop = (): JSX.Element => {
     useEffect(()=>{
 setTimeout(() => { 
     setCategoryList(shopFixtures)
-}, 1000)
+}, 100)
     },[])
 
 
@@ -71,7 +71,7 @@ setTimeout(() => {
 
 
     return <ShopContent>
-        <div>
+        <div style={{margin: '0 10rem'}}>
         {categoryList.map((category) => (
             <div key={category.id} style={styles.articlePresentation} onClick={() => navigateToCategory(category.id)}>
               <img src={category.url} style={styles.articleImagePresentation} />
@@ -173,6 +173,7 @@ const styles: { [key: string]: React.CSSProperties } = {
       alignItems: "center",
       cursor: "pointer",
       justifyContent: "space-around",
+      margin: "10px"
     },
     articleImagePresentation: {
       width: "200px",
