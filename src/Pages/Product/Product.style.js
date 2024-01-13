@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled, { keyframes } from "styled-components";
 import { DefaultButton } from '../Global.style'
 
 export const ProductContent = styled.div`
@@ -66,3 +66,41 @@ export const DeleteButton = styled(DefaultButton)`
   font-size: 1.3rem;
   margin: 0.2rem 5rem;
 `
+
+const fadeInOut = keyframes`
+  0% {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+`;
+
+const fadeOut = keyframes`
+  0% {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  100% {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+`;
+
+export const ProductBaner = styled.div`
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: #4caf50;
+  color: white;
+  text-align: center;
+  padding: 1rem;
+  opacity: ${({ isVisible }) => (isVisible ? 1 : 0)};
+  transform: scale(${({ isVisible }) => (isVisible ? 1 : 0.9)});
+  transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+`;
