@@ -1,0 +1,43 @@
+h2, p {
+    margin:auto;
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+    text-align: center;
+}
+
+.cart-table {
+    width: 70%;
+    margin: auto;
+    border-collapse: collapse;
+    margin-top: 20px;
+    border: 1px solid #ddd; 
+}
+
+
+.cart-table th, .cart-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center; 
+}
+
+
+.cart-table th {
+    background-color: #f2f2f2;
+}
+.cart-table button {
+    background-color: #ff5555;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+
+.cart-table img {
+    max-width: 100px;
+    max-height: 100px;
+    width: auto;
+    height: auto; 
+    display: block; 
+    margin: 0 auto; 
+}

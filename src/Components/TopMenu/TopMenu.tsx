@@ -69,7 +69,7 @@ const TopMenu = () => {
           </div>
 
           <Hidden xsDown>
-            <IconButton color="inherit"  className={classes.buttonIcon} >
+            <IconButton onClick={() => navigator(Routing.cart)} color="inherit"  className={classes.buttonIcon} >
               <ShoppingCartIcon/>
             </IconButton>
           </Hidden>

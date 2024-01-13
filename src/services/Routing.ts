@@ -8,4 +8,5 @@ export const Routing = {
     product: '/product/:product',
     add: '/add',
     artciles: '/articles',
+    cart: '/cart'
 }
