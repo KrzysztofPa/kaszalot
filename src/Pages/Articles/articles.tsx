@@ -41,7 +41,7 @@ export const Articles = (): JSX.Element => {
   const [editorContent, setEditorContent] = useState<string>('');
   const [isEditing, setIsEditing] = useState<boolean>(false);
 
-  const currentUser: User = { isAdmin: false };
+  const currentUser: User = { isAdmin: true };
 
   const handlePostClick = (post: Article): void => {
     setSelectedPost(post);
