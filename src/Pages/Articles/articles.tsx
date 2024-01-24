@@ -1,4 +1,3 @@
-// articles.tsx
 import React, { useState } from 'react';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
@@ -106,8 +105,40 @@ export const Articles = (): JSX.Element => {
     setSelectedImage('');
   };
 
+  const handleAddArticle = (): void => {
+    const newArticle: Article = {
+      id: mockDatabase.length + 1,
+      title: 'New Article',
+      content: '',
+      fullContent: '',
+      date: new Date().toLocaleDateString(),
+      image: '',
+    };
+
+    mockDatabase.push(newArticle);
+
+    handlePostClick(newArticle);
+  };
+
+  const handleDeleteArticle = (): void => {
+    if (selectedPost) {
+      const updatedDatabase = mockDatabase.filter((post) => post.id !== selectedPost.id);
+      mockDatabase.length = 0;
+      mockDatabase.push(...updatedDatabase);
+      handleClose();
+    }
+  };
+
   return (
     <div className={classes.root}>
+      {currentUser.isAdmin && (
+        <>
+          <Button className={classes.saveButton} onClick={handleAddArticle}>
+            Dodaj artykuł
+          </Button>
+        </>
+      )}
+
       <Grid container spacing={3}>
         {mockDatabase.map((article) => (
           <Grid item key={article.id} xs={12} sm={6} md={4}>
@@ -144,55 +175,58 @@ export const Articles = (): JSX.Element => {
           )}
         </DialogTitle>
         <DialogContent>
-  {isEditing && (
-    <div className={classes.editingContent}>
-      <div className={classes.imageContainer}>
-        <img src={selectedImage} alt="Selected" className={classes.selectedImage} />
-        <div>
-          <input
-            accept="image/*"
-            style={{ display: 'none' }}
-            id="image-upload"
-            type="file"
-            onChange={handleImageChange}
-          />
-          <label htmlFor="image-upload">
-            <IconButton color="primary" component="span">
-              <AddPhotoAlternateIcon />
-            </IconButton>
-          </label>
-          {selectedImage && (
-            <IconButton
-              color="secondary"
-              onClick={handleRemoveImage}
-              className={classes.deleteButton}
-            >
-              <DeleteIcon />
-            </IconButton>
+          {isEditing && (
+            <div className={classes.editingContent}>
+              <div className={classes.imageContainer}>
+                <img src={selectedImage} alt="Selected" className={classes.selectedImage} />
+                <div>
+                  <input
+                    accept="image/*"
+                    style={{ display: 'none' }}
+                    id="image-upload"
+                    type="file"
+                    onChange={handleImageChange}
+                  />
+                  <label htmlFor="image-upload">
+                    <IconButton color="primary" component="span">
+                      <AddPhotoAlternateIcon />
+                    </IconButton>
+                  </label>
+                  {selectedImage && (
+                    <IconButton
+                      color="secondary"
+                      onClick={handleRemoveImage}
+                      className={classes.deleteButton}
+                    >
+                      <DeleteIcon />
+                    </IconButton>
+                  )}
+                </div>
+              </div>
+            </div>
           )}
-        </div>
-      </div>
-    </div>
-  )}
-  {isEditing ? (
-    <ReactQuill value={editorContent} onChange={handleEditorChange} />
-  ) : (
-    <div dangerouslySetInnerHTML={{ __html: editorContent }} />
-  )}
-</DialogContent>
+          {isEditing ? (
+            <ReactQuill value={editorContent} onChange={handleEditorChange} />
+          ) : (
+            <div dangerouslySetInnerHTML={{ __html: editorContent }} />
+          )}
+        </DialogContent>
 
-{isEditing && (
-  <DialogActions className={classes.dialogActions}>
-    <div className={classes.buttonsContainer}>
-      <Button onClick={handleSave} className={classes.saveButton}>
-        Zapisz
-      </Button>
-      <Button onClick={handleClose} className={classes.closeButton}>
-        Zamknij
-      </Button>
-    </div>
-  </DialogActions>
-)}
+        {isEditing && (
+          <DialogActions className={classes.dialogActions}>
+            <div className={classes.buttonsContainer}>
+              <Button onClick={handleSave} className={classes.saveButton}>
+                Zapisz
+              </Button>
+              <Button onClick={handleClose} className={classes.closeButton}>
+                Zamknij
+              </Button>
+              <Button className={classes.closeButton}onClick={handleDeleteArticle}>
+              Usuń artykuł
+            </Button>
+            </div>
+          </DialogActions>
+        )}
       </Dialog>
     </div>
   );

@@ -25,8 +25,6 @@ const Login: React.FC = () => {
   const [loggedIn, setLoggedIn] = useState<boolean>(false);
   const [emailError, setEmailError] = useState<string>('');
   const [showSuccessMessage, setShowSuccessMessage] = useState(false);
-
-  // Nowe stany dla danych rejestracyjnych
   const [username, setUsername] = useState<string>('');
   const [registrationEmail, setRegistrationEmail] = useState<string>('');
   const [registrationPassword, setRegistrationPassword] = useState<string>('');
@@ -50,7 +48,6 @@ const Login: React.FC = () => {
       return;
     }
 
-    // Tutaj możesz dodać logikę logowania z użyciem API
     fetch('http://localhost:5000/api/Auth/login', {
       method: 'POST',
       headers: {
@@ -68,12 +65,10 @@ const Login: React.FC = () => {
         return response.json();
       })
       .then(data => {
-        // Tutaj możesz obsłużyć sukces logowania
         setLoggedIn(true);
         setShowSuccessMessage(true);
       })
       .catch(error => {
-        // Tutaj możesz obsłużyć błąd logowania
         alert('Błąd logowania. Spróbuj ponownie.');
       })
       .finally(() => {
@@ -85,14 +80,12 @@ const Login: React.FC = () => {
     setRegistrationLoading(true);
     setRegistrationError('');
 
-    // Sprawdzanie poprawności danych rejestracyjnych
     if (!isEmailValid(registrationEmail)) {
       setRegistrationError('Niepoprawny adres email');
       setRegistrationLoading(false);
       return;
     }
 
-    // Tutaj możesz dodać logikę rejestracji z użyciem API
     fetch('http://localhost:5000/api/Auth/register', {
       method: 'POST',
       headers: {
@@ -111,13 +104,11 @@ const Login: React.FC = () => {
         return response.json();
       })
       .then(data => {
-        // Tutaj możesz obsłużyć sukces rejestracji
         alert('Zarejestrowano pomyślnie. Możesz teraz się zalogować.');
         setRegistrationEmail('');
         setRegistrationPassword('');
       })
       .catch(error => {
-        // Tutaj możesz obsłużyć błąd rejestracji
         setRegistrationError('Błąd rejestracji. Spróbuj ponownie.');
       })
       .finally(() => {
@@ -134,7 +125,6 @@ const Login: React.FC = () => {
         </Avatar>
         <Typography variant="h5">Logowanie</Typography>
         <form className={classes.form} noValidate>
-          {/* Formularz logowania */}
           <TextField
             variant="outlined"
             margin="normal"
@@ -176,8 +166,6 @@ const Login: React.FC = () => {
           >
             {loginLoading ? <CircularProgress size={24} /> : 'Zaloguj się'}
           </Button>
-
-          {/* Formularz rejestracji */}
           <TextField
             variant="outlined"
             margin="normal"
