@@ -15,7 +15,7 @@ import {Articles} from "./Pages/Articles/articles";
 import { Category } from './Pages/Category/Category';
 import { Cart } from './Pages/Cart/Cart';
 
-
+export const baseUrl = 'http://localhost:5000'
 
 ReactDOM.render(
     <BrowserRouter>
@@ -39,6 +39,3 @@ ReactDOM.render(
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();
-
-
-export const baseUrl = 'http://localhost:3005'

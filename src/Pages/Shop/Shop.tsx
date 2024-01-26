@@ -19,25 +19,25 @@ const shopFixtures:categoryItem[] =
     {
         name: 'Karmy kocie',
         id: '1',
-        url: 'https://placekitten.com/350/250',
+        url: 'https://picsum.photos/207',
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam dignissim gravida condimentum. Fusce rutrum mi ac sodales faucibus. Maecenas tempor sagittis sodales. Cras ut aliquam elit. Donec imperdiet sapien vitae odio scelerisque convallis. Quisque et dignissim nisl, id luctus ligula. '
     },
 {
     name: 'Karmy psie',
     id: '2',
-    url: 'https://placekitten.com/350/250',
+    url: 'https://picsum.photos/209',
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam dignissim gravida condimentum. Fusce rutrum mi ac sodales faucibus. Maecenas tempor sagittis sodales. Cras ut aliquam elit. Donec imperdiet sapien vitae odio scelerisque convallis. Quisque et dignissim nisl, id luctus ligula. '
 },
 {
     name: 'Zabawki',
     id: '3',
-    url: 'https://placekitten.com/350/250',
+    url: 'https://picsum.photos/210',
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam dignissim gravida condimentum. Fusce rutrum mi ac sodales faucibus. Maecenas tempor sagittis sodales. Cras ut aliquam elit. Donec imperdiet sapien vitae odio scelerisque convallis. Quisque et dignissim nisl, id luctus ligula. '
 },
 {
     name: 'Klatki dla gekonów',
     id: '4',
-    url: 'https://placekitten.com/350/250',
+    url: 'https://picsum.photos/20123',
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam dignissim gravida condimentum. Fusce rutrum mi ac sodales faucibus. Maecenas tempor sagittis sodales. Cras ut aliquam elit. Donec imperdiet sapien vitae odio scelerisque convallis. Quisque et dignissim nisl, id luctus ligula. '
 },
 ]

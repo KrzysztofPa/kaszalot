@@ -46,7 +46,7 @@ export const Product = (): JSX.Element => {
         return () => clearTimeout(timer);
       }, [showBanner]);
   
-    const [productData, setProductData] = useState<ProductData>( {id: 'params.product', url: 'https://placekitten.com/351/251', name: 'Produkt', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam fermentum, augue ac mollis ultricies, metus lacus facilisis libero, vitae pretium ligula neque a sapien. Fusce molestie ornare leo nec gravida. Nullam nibh lacus, faucibus a ullamcorper sed, lacinia eget enim. Cras id rhoncus ex. Morbi eget eleifend turpis, porttitor finibus mi. Suspendisse ac ornare mauris. Sed ut imperdiet massa, in posuere odio. Vivamus fermentum lorem tempor sem scelerisque dictum. Integer semper tortor lacinia enim rutrum convallis. ', price: 100});
+    const [productData, setProductData] = useState<ProductData>( {id: 'params.product', url: 'https://picsum.photos/200', name: 'Produkt', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam fermentum, augue ac mollis ultricies, metus lacus facilisis libero, vitae pretium ligula neque a sapien. Fusce molestie ornare leo nec gravida. Nullam nibh lacus, faucibus a ullamcorper sed, lacinia eget enim. Cras id rhoncus ex. Morbi eget eleifend turpis, porttitor finibus mi. Suspendisse ac ornare mauris. Sed ut imperdiet massa, in posuere odio. Vivamus fermentum lorem tempor sem scelerisque dictum. Integer semper tortor lacinia enim rutrum convallis. ', price: 100});
 
 
     const addToCart = () => {
@@ -65,7 +65,7 @@ export const Product = (): JSX.Element => {
     }
 
     useEffect(()=>{
-        axios.get(`${baseUrl}/bed/${params.product}`)
+        axios.get(`${baseUrl}/api/Category`)
             .then((res: AxiosResponse<ProductData>)=>{
                 setProductData(res.data);
             })
