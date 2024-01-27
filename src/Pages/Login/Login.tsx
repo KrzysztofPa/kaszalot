@@ -10,6 +10,7 @@ import {
   CircularProgress,
 } from '@material-ui/core';
 import MuiAlert, { AlertProps } from '@material-ui/lab/Alert';
+import { useNavigate } from 'react-router-dom';
 
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import useStyles from './Login.style';
@@ -20,6 +21,8 @@ function Alert(props: AlertProps) {
 
 const Login: React.FC = () => {
   const classes = useStyles();
+  const navigate = useNavigate();
+
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [loggedIn, setLoggedIn] = useState<boolean>(false);
@@ -33,6 +36,17 @@ const Login: React.FC = () => {
 
   const [loginLoading, setLoginLoading] = useState<boolean>(false);
 
+  const [username, setUsername] = useState<string>('');
+  const [registrationEmail, setRegistrationEmail] = useState<string>('');
+  const [registrationPassword, setRegistrationPassword] = useState<string>('');
+  const [registrationError, setRegistrationError] = useState<string>('');
+  const [registrationLoading, setRegistrationLoading] = useState<boolean>(false);
+
+  const [loginLoading, setLoginLoading] = useState<boolean>(false);
+  const [loginError, setLoginError] = useState<string>('');
+  
+  const [isRegistrationMode, setIsRegistrationMode] = useState<boolean>(false);
+
   const isEmailValid = (email: string) => {
     const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
     return emailRegex.test(email);
@@ -41,6 +55,7 @@ const Login: React.FC = () => {
   const handleLogin = () => {
     setLoginLoading(true);
     setEmailError('');
+    setLoginError('');
 
     if (!isEmailValid(email)) {
       setEmailError('Niepoprawny adres email');
@@ -67,9 +82,16 @@ const Login: React.FC = () => {
       .then(data => {
         setLoggedIn(true);
         setShowSuccessMessage(true);
+<<<<<<< HEAD
+        navigate('/Main');
+      })
+      .catch(error => {
+        setLoginError('Błąd logowania. Spróbuj ponownie.');
+=======
       })
       .catch(error => {
         alert('Błąd logowania. Spróbuj ponownie.');
+>>>>>>> master
       })
       .finally(() => {
         setLoginLoading(false);
@@ -99,21 +121,27 @@ const Login: React.FC = () => {
     })
       .then(response => {
         if (!response.ok) {
-          throw new Error('Błąd rejestracji');
+          throw new Error(response.status === 409 ? 'Email już istnieje' : 'Błąd rejestracji');
         }
         return response.json();
       })
       .then(data => {
-        alert('Zarejestrowano pomyślnie. Możesz teraz się zalogować.');
+        setShowSuccessMessage(true);
+        setUsername('');
         setRegistrationEmail('');
         setRegistrationPassword('');
       })
       .catch(error => {
-        setRegistrationError('Błąd rejestracji. Spróbuj ponownie.');
+        setShowSuccessMessage(false);
+        setRegistrationError(error.message);
       })
       .finally(() => {
         setRegistrationLoading(false);
       });
+  };
+
+  const toggleMode = () => {
+    setIsRegistrationMode(!isRegistrationMode);
   };
 
   return (
@@ -123,22 +151,36 @@ const Login: React.FC = () => {
         <Avatar className={classes.avatar}>
           <LockOutlinedIcon />
         </Avatar>
-        <Typography variant="h5">Logowanie</Typography>
+        <Typography variant="h5">{isRegistrationMode ? 'Rejestracja' : 'Logowanie'}</Typography>
         <form className={classes.form} noValidate>
+          {isRegistrationMode && (
+            <TextField
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              id="username"
+              label="Nazwa użytkownika"
+              name="username"
+              autoComplete="username"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              disabled={loginLoading || registrationLoading}
+            />
+          )}
           <TextField
             variant="outlined"
             margin="normal"
             required
             fullWidth
-            id="email"
+            id={isRegistrationMode ? "registrationEmail" : "email"}
             label="Adres email"
-            name="email"
+            name={isRegistrationMode ? "registrationEmail" : "email"}
             autoComplete="email"
-            autoFocus
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            error={!!emailError}
-            helperText={emailError}
+            value={isRegistrationMode ? registrationEmail : email}
+            onChange={(e) => isRegistrationMode ? setRegistrationEmail(e.target.value) : setEmail(e.target.value)}
+            error={isRegistrationMode ? !!registrationError : !!emailError}
+            helperText={isRegistrationMode ? registrationError : emailError}
             disabled={loginLoading || registrationLoading}
           />
           <TextField
@@ -146,87 +188,49 @@ const Login: React.FC = () => {
             margin="normal"
             required
             fullWidth
-            name="password"
+            name={isRegistrationMode ? "registrationPassword" : "password"}
             label="Hasło"
             type="password"
-            id="password"
-            autoComplete="current-password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            id={isRegistrationMode ? "registrationPassword" : "password"}
+            value={isRegistrationMode ? registrationPassword : password}
+            onChange={(e) => isRegistrationMode ? setRegistrationPassword(e.target.value) : setPassword(e.target.value)}
             disabled={loginLoading || registrationLoading}
           />
           <Button
             type="button"
             fullWidth
             variant="contained"
-            color="primary"
-            className={classes.submit}
-            onClick={handleLogin}
+            color={isRegistrationMode ? "secondary" : "primary"}
+            onClick={isRegistrationMode ? handleRegistration : handleLogin}
             disabled={loginLoading || registrationLoading}
           >
-            {loginLoading ? <CircularProgress size={24} /> : 'Zaloguj się'}
+            {isRegistrationMode ? (registrationLoading ? <CircularProgress size={24} /> : 'Zarejestruj się') : (loginLoading ? <CircularProgress size={24} /> : 'Zaloguj się')}
           </Button>
-          <TextField
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            id="username"
-            label="Nazwa użytkownika"
-            name="username"
-            autoComplete="username"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            disabled={loginLoading || registrationLoading}
-          />
-          <TextField
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            id="registrationEmail"
-            label="Nowy adres email"
-            name="registrationEmail"
-            autoComplete="email"
-            value={registrationEmail}
-            onChange={(e) => setRegistrationEmail(e.target.value)}
-            error={!!registrationError}
-            helperText={registrationError}
-            disabled={loginLoading || registrationLoading}
-          />
-          <TextField
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            name="registrationPassword"
-            label="Nowe hasło"
-            type="password"
-            id="registrationPassword"
-            value={registrationPassword}
-            onChange={(e) => setRegistrationPassword(e.target.value)}
-            disabled={loginLoading || registrationLoading}
-          />
           <Button
             type="button"
             fullWidth
-            variant="contained"
-            color="secondary"
-            className={classes.submit}
-            onClick={handleRegistration}
+            variant="outlined"
+            color="default"
+            onClick={toggleMode}
             disabled={loginLoading || registrationLoading}
           >
-            {registrationLoading ? <CircularProgress size={24} /> : 'Zarejestruj się'}
+            {isRegistrationMode ? 'Zaloguj się' : 'Zarejestruj się'}
           </Button>
         </form>
       </div>
       <Snackbar
-        open={showSuccessMessage}
+        open={showSuccessMessage || !!loginError}
         autoHideDuration={6000}
-        onClose={() => setShowSuccessMessage(false)}
+        onClose={() => {
+          setShowSuccessMessage(false);
+          setLoginError('');
+        }}
       >
-        <Alert onClose={() => setShowSuccessMessage(false)} severity="success">
-          Zalogowano pomyślnie.
+        <Alert onClose={() => {
+          setShowSuccessMessage(false);
+          setLoginError('');
+        }} severity={loginError ? "error" : "success"}>
+          {loggedIn ? 'Zalogowano pomyślnie.' : (loginError || 'Zarejestrowano pomyślnie. Możesz teraz się zalogować.')}
         </Alert>
       </Snackbar>
     </Container>
