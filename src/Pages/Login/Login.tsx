@@ -10,7 +10,7 @@ import {
   CircularProgress,
 } from '@material-ui/core';
 import MuiAlert, { AlertProps } from '@material-ui/lab/Alert';
-
+import { useNavigate } from 'react-router-dom'
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import useStyles from './Login.style';
 
@@ -32,7 +32,7 @@ const Login: React.FC = () => {
   const [registrationLoading, setRegistrationLoading] = useState<boolean>(false);
 
   const [loginLoading, setLoginLoading] = useState<boolean>(false);
-
+  const navigate = useNavigate();
   const isEmailValid = (email: string) => {
     const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
     return emailRegex.test(email);
@@ -67,6 +67,7 @@ const Login: React.FC = () => {
       .then(data => {
         setLoggedIn(true);
         setShowSuccessMessage(true);
+        navigate('/articles');
       })
       .catch(error => {
         alert('Błąd logowania. Spróbuj ponownie.');
