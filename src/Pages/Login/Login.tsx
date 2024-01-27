@@ -28,6 +28,13 @@ const Login: React.FC = () => {
   const [loggedIn, setLoggedIn] = useState<boolean>(false);
   const [emailError, setEmailError] = useState<string>('');
   const [showSuccessMessage, setShowSuccessMessage] = useState(false);
+  const [username, setUsername] = useState<string>('');
+  const [registrationEmail, setRegistrationEmail] = useState<string>('');
+  const [registrationPassword, setRegistrationPassword] = useState<string>('');
+  const [registrationError, setRegistrationError] = useState<string>('');
+  const [registrationLoading, setRegistrationLoading] = useState<boolean>(false);
+
+  const [loginLoading, setLoginLoading] = useState<boolean>(false);
 
   const [username, setUsername] = useState<string>('');
   const [registrationEmail, setRegistrationEmail] = useState<string>('');
@@ -75,10 +82,16 @@ const Login: React.FC = () => {
       .then(data => {
         setLoggedIn(true);
         setShowSuccessMessage(true);
+<<<<<<< HEAD
         navigate('/Main');
       })
       .catch(error => {
         setLoginError('Błąd logowania. Spróbuj ponownie.');
+=======
+      })
+      .catch(error => {
+        alert('Błąd logowania. Spróbuj ponownie.');
+>>>>>>> master
       })
       .finally(() => {
         setLoginLoading(false);

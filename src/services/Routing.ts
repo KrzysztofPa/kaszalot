@@ -3,8 +3,10 @@ export const Routing = {
     login: '/login',
     main: '/main',
     contact: '/contact',
-    shop: '/shop',
+    shop: '/category',
+    category: '/category/:category',
     product: '/product/:product',
     add: '/add',
     artciles: '/articles',
+    cart: '/cart'
 }

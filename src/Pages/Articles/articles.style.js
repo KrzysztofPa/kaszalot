@@ -1,3 +1,4 @@
+// articles.style.ts
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
@@ -28,6 +29,44 @@ const useStyles = makeStyles((theme) => ({
   },
   dialogActions: {
     padding: theme.spacing(2),
+  },
+  selectedImage: {
+    width: '100%',
+    height: 'auto',
+    marginTop: theme.spacing(1),
+  },
+  editingContent: {
+    marginBottom: theme.spacing(2),
+  },
+  imageContainer: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    marginTop: theme.spacing(1),
+  },
+  selectedImage: {
+    maxWidth: '100%',
+    maxHeight: '400px',
+    width: 'auto',
+    height: 'auto',
+  },
+  deleteButton: {
+    marginTop: theme.spacing(1),
+  },
+  buttonsContainer: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+  },
+  saveButton: {
+    backgroundColor: '#1D9EDC',
+    color: 'white',
+    marginTop: theme.spacing(1),
+  },
+  closeButton: {
+    backgroundColor: '#1D9EDC',
+    color: 'white',
+    marginTop: theme.spacing(1),
   },
 }));
 

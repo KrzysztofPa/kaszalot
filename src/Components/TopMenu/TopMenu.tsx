@@ -13,12 +13,15 @@ import Tab from '@material-ui/core/Tab';
 import InputBase from '@material-ui/core/InputBase';
 import Button from '@material-ui/core/Button';
 import { makeStyles, Theme } from '@material-ui/core/styles';
-import LogoImage from '../../logo.svg';
+import LOGO from '../../img/LOGO.png'
 
 import useStyles from './TopMenu.style';
+import { useNavigate } from 'react-router-dom';
+import { Routing } from '../../services/Routing';
 
 
 const TopMenu = () => {
+  const navigator = useNavigate();
   const classes = useStyles();
   const [drawerOpen, setDrawerOpen] = useState(false);
 
@@ -43,14 +46,14 @@ const TopMenu = () => {
           <div className={classes.tabs}>
             <Hidden xsDown>
               <Tabs value={false}>
-                <Button color="inherit" className={classes.tab}>Zakładka 1</Button>
-                <Button color="inherit" className={classes.tab}>Zakładka 1</Button>
-                <Button color="inherit" className={classes.tab}>Zakładka 1</Button>
+                <Button onClick={() => navigator(Routing.main)} color="inherit" className={classes.tab}>Strona główna</Button>
+                <Button onClick={() => navigator(Routing.shop)} color="inherit" className={classes.tab}>Kategorie</Button>
+                <Button onClick={() => navigator(Routing.artciles)} color="inherit" className={classes.tab}>Artykuły</Button>
               </Tabs>
             </Hidden>
           </div>
 
-          <img src={LogoImage} alt="Logo" className={classes.logo} />
+          <img src={LOGO} alt="Logo" className={classes.logo} />
 
           <div className={classes.search}>
             <div className={classes.searchIcon}>
@@ -66,7 +69,7 @@ const TopMenu = () => {
           </div>
 
           <Hidden xsDown>
-            <IconButton color="inherit"  className={classes.buttonIcon} >
+            <IconButton onClick={() => navigator(Routing.cart)} color="inherit"  className={classes.buttonIcon} >
               <ShoppingCartIcon/>
             </IconButton>
           </Hidden>

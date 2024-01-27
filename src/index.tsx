@@ -12,6 +12,10 @@ import {PageTemplate} from "./Components/PageTemplate/PageTemplate";
 import {Product} from './Pages/Product/Product';
 import {Add} from "./Pages/Add/Add";
 import {Articles} from "./Pages/Articles/articles";
+import { Category } from './Pages/Category/Category';
+import { Cart } from './Pages/Cart/Cart';
+
+export const baseUrl = 'http://localhost:5000'
 
 ReactDOM.render(
     <BrowserRouter>
@@ -20,7 +24,9 @@ ReactDOM.render(
             <Route path={Routing.main} element={<PageTemplate Element={<Main/>}/>}/>
             <Route path={Routing.contact} element={<PageTemplate Element={<Contact/>}/>}/>
             <Route path={Routing.shop} element={<PageTemplate Element={<Shop/>}/>}/>
+            <Route path={Routing.category} element={<PageTemplate Element={<Category/>}/>}/>
             <Route path={Routing.product} element={<PageTemplate Element={<Product/>}/>}/>
+            <Route path={Routing.cart} element={<PageTemplate Element={<Cart/>}/>}/>
             <Route path={Routing.add} element={<PageTemplate Element={<Add/>}/>}/>
             <Route path={Routing.artciles} element={<PageTemplate Element={<Articles/>}/>}/>
 
@@ -33,6 +39,3 @@ ReactDOM.render(
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();
-
-
-export const baseUrl = 'http://localhost:3005'
