@@ -89,9 +89,6 @@ const TopMenu = () => {
         classes={{ paper: classes.drawerPaper }}
       >
         <Tabs value={false} orientation="vertical">
-        <Button color="inherit" className={classes.tabDrawer} onClick={handleDrawerClose}>Zakładka 1</Button>
-        <Button color="inherit" className={classes.tabDrawer} onClick={handleDrawerClose}>Zakładka 2</Button>
-        <Button color="inherit" className={classes.tabDrawer} onClick={handleDrawerClose}>Zakładka 3</Button>
         <Button color="inherit" className={classes.tabDrawer} onClick={handleDrawerClose}>Koszyk</Button>
         <Button color="inherit" className={classes.tabDrawer} onClick={handleDrawerClose}>Logowanie</Button>
         </Tabs>
